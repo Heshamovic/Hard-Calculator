@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:paddingLeft="44dp">
+
+        <TextView
+            android:id="@+id/Time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="#000"
+            android:textSize="24dp" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="44dp"
+            android:layout_marginRight="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="LEVEL"
+                android:textColor="#000"
+                android:textSize="24dp"
+                />
+            <TextView
+                android:id="@+id/LevelNumber_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:text="1"
+                android:textColor="#000"
+                android:textSize="24dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/Reset_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="ResetLevel"
+            android:text="Reset"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Number_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="24dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+        <Button
+            android:layout_alignParentLeft="true"
+            android:id="@+id/Multply_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:onClick="Multply"
+            android:text="X 5"
+            android:textSize="24sp" />
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/Divide_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:onClick="Divide"
+            android:text="/ 5"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp">
+        <Button
+            android:layout_centerInParent="true"
+            android:id="@+id/changeSign_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="ChangeSign"
+            android:text="-/+"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_alignParentLeft="true"
+            android:id="@+id/Minus_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:onClick="Minus"
+            android:text="- 5"
+            android:textSize="24sp" />
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/Plus_button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:onClick="Plus"
+            android:text="+ 5"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/LeftMoves_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Left Moves : 7"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="24dp" />
+
+</LinearLayout>
