@@ -17,8 +17,8 @@ class LevelsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
-    }
 
+    }
     var currentNumber = 0
     var plusNumber = 5
     var minusNumber = 5
