@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        android:paddingLeft="45dp">
+        android:paddingLeft="35dp">
 
         <TextView
             android:id="@+id/Time_text_view"
@@ -50,9 +50,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reset"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
             android:background="#dc3545"
             android:layout_marginTop="5dp"
             android:textColor="#ffffff"
+            android:drawableLeft="@android:drawable/stat_notify_sync_noanim"
             android:onClick="ResetLevel"
             android:textSize="17dp" />
 

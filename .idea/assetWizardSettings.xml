@@ -47,11 +47,11 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundColor" value="dc3545" />
-                                      <entry key="backgroundLayerName" value="mainIconBL" />
+                                      <entry key="backgroundLayerName" value="ic_launch" />
                                       <entry key="foregroundImage" value="C:\Users\Heshamovic\Desktop\icon.png" />
-                                      <entry key="foregroundLayerName" value="mainIcon" />
+                                      <entry key="foregroundLayerName" value="ic_launcher" />
                                       <entry key="legacyIconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="MainIcon" />
+                                      <entry key="outputName" value="ic_launcher_background" />
                                       <entry key="showGrid" value="true" />
                                       <entry key="webIconShape" value="CIRCLE" />
                                     </map>
