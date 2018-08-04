@@ -1,32 +1,39 @@
 package com.example.project.hardcalculator
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import android.R.string.cancel
-import android.content.DialogInterface
+import android.graphics.Color
 import android.widget.Button
+import kotlin.math.max
 
 
 class LevelsActivity : AppCompatActivity() {
 
+    var plusNumber = 1
+    var minusNumber = 2
+    var divideNumber = 3
+    var multplyNumber = 4
+    var InitNumber = 1
+    var currentNumber = InitNumber
+    var moves = 7
+    var FinalNumber = 10
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
-
+        val plusBtn = findViewById<View>(R.id.Plus_button_view) as TextView
+        val minusBtn = findViewById<View>(R.id.Minus_button_view) as TextView
+        val multplyBtn = findViewById<View>(R.id.Multply_button_view) as TextView
+        val divideBtn = findViewById<View>(R.id.Divide_button_view) as TextView
+        plusBtn.text = "+ " + plusNumber.toString()
+        minusBtn.text = "- " + minusNumber.toString()
+        multplyBtn.text = "x " + multplyNumber.toString()
+        divideBtn.text = "/ " + divideNumber.toString()
+        display(InitNumber)
     }
-    var currentNumber = 0
-    var plusNumber = 5
-    var minusNumber = 5
-    var divideNumber = 5
-    var multplyNumber = 5
-    var InitNumber = 1
-    var moves = 7
-    var FinalNumber = 25
     fun Reset ()
     {
         currentNumber = InitNumber
@@ -67,11 +74,13 @@ class LevelsActivity : AppCompatActivity() {
     }
     fun Divide(view: View)
     {
+        if (currentNumber % divideNumber != 0)
+        {
+            Toast.makeText(applicationContext,currentNumber.toString() + " is not divisible by " + divideNumber.toString(), Toast.LENGTH_LONG).show()
+            return
+        }
         moves--
-        if (currentNumber % divideNumber == 0)
-            currentNumber /= divideNumber
-        else
-            currentNumber = currentNumber
+        currentNumber /= divideNumber
         display(currentNumber)
     }
     fun ChangeSign(view: View)
@@ -81,10 +90,23 @@ class LevelsActivity : AppCompatActivity() {
         display(currentNumber)
     }
     private fun display(number: Int) {
+        moves = max(moves.toInt(), 0)
         val currentNumberTextView = findViewById<View>(R.id.Number_text_view) as TextView
         currentNumberTextView.text = "" + number
         val currentMoves = findViewById<View>(R.id.LeftMoves_text_view) as TextView
         currentMoves.text = "Left Moves : " + moves
+        if (moves < 5)
+        {
+            currentMoves.text = currentMoves.text.toString() + " !"
+            currentMoves.setTextColor(Color.parseColor("#fd7e14"))
+        }
+        if (moves < 3)
+        {
+            currentMoves.text = currentMoves.text.toString() + "!"
+            currentMoves.setTextColor(Color.parseColor("#dc3545"))
+        }
+        if (moves > 4)
+            currentMoves.setTextColor(Color.parseColor("#20c997"))
         if (currentNumber == FinalNumber || moves == 0)
             EndGame(moves);
     }
