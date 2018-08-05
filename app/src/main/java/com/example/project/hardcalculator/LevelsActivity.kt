@@ -4,10 +4,8 @@ import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import android.graphics.Color
-import android.widget.Button
 import kotlinx.android.synthetic.main.levels.*
 import kotlin.math.max
 
@@ -20,6 +18,7 @@ class LevelsActivity : AppCompatActivity() {
     var initNumber = 1
     var currentNumber = initNumber
     var moves = 7
+    Database
     var finalNumber = 10
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
