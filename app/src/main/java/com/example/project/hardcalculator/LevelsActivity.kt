@@ -18,7 +18,6 @@ class LevelsActivity : AppCompatActivity() {
     var initNumber = 1
     var currentNumber = initNumber
     var moves = 7
-    Database
     var finalNumber = 10
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
