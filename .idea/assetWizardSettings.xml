@@ -18,24 +18,12 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
-                                      <entry key="backgroundImage">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="scalingPercent" value="101" />
-                                                <entry key="trimmed" value="true" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="80" />
+                                                <entry key="scalingPercent" value="92" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -46,14 +34,12 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="dc3545" />
-                                      <entry key="backgroundLayerName" value="ic_launch" />
-                                      <entry key="foregroundImage" value="C:\Users\Heshamovic\Desktop\icon.png" />
-                                      <entry key="foregroundLayerName" value="ic_launcher" />
-                                      <entry key="legacyIconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="ic_launcher_background" />
-                                      <entry key="showGrid" value="true" />
-                                      <entry key="webIconShape" value="CIRCLE" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="backgroundLayerName" value="target" />
+                                      <entry key="foregroundImage" value="C:\Users\Heshamovic\Desktop\target-2486526_960_720.png" />
+                                      <entry key="foregroundLayerName" value="targe_fore" />
+                                      <entry key="outputName" value="target_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>

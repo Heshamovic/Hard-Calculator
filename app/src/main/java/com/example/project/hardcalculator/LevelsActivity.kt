@@ -8,8 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import android.graphics.Color
 import android.widget.Button
+import kotlinx.android.synthetic.main.levels.*
 import kotlin.math.max
-
 
 class LevelsActivity : AppCompatActivity() {
 
@@ -17,37 +17,29 @@ class LevelsActivity : AppCompatActivity() {
     var minusNumber = 2
     var divideNumber = 3
     var multplyNumber = 4
-    var InitNumber = 1
-    var currentNumber = InitNumber
+    var initNumber = 1
+    var currentNumber = initNumber
     var moves = 7
-    var FinalNumber = 10
+    var finalNumber = 10
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
-        val plusBtn = findViewById<View>(R.id.Plus_button_view) as TextView
-        val minusBtn = findViewById<View>(R.id.Minus_button_view) as TextView
-        val multplyBtn = findViewById<View>(R.id.Multply_button_view) as TextView
-        val divideBtn = findViewById<View>(R.id.Divide_button_view) as TextView
-        plusBtn.text = "+ " + plusNumber.toString()
-        minusBtn.text = "- " + minusNumber.toString()
-        multplyBtn.text = "x " + multplyNumber.toString()
-        divideBtn.text = "/ " + divideNumber.toString()
-        display(InitNumber)
+        plusButton.text = "+ " + plusNumber.toString()
+        minusButton.text = "- " + minusNumber.toString()
+        multiplyButton.text = "x " + multplyNumber.toString()
+        divideButton.text = "/ " + divideNumber.toString()
+        targetNumberTextView.text = "Target : " + finalNumber.toString()
+        display(initNumber)
     }
     fun Reset ()
     {
-        currentNumber = InitNumber
+        currentNumber = initNumber
         moves = 7
-        val divBtn = findViewById<View>(R.id.Divide_button_view) as Button
-        val mulBtn = findViewById<View>(R.id.Multply_button_view) as Button
-        val minusBtn = findViewById<View>(R.id.Minus_button_view) as Button
-        val plusBtn = findViewById<View>(R.id.Plus_button_view) as Button
-        val signBtn = findViewById<View>(R.id.changeSign_button_view) as Button
-        divBtn.isEnabled = true
-        mulBtn.isEnabled = true
-        minusBtn.isEnabled = true
-        plusBtn.isEnabled = true
-        signBtn.isEnabled = true
+        divideButton.isEnabled = true
+        multiplyButton.isEnabled = true
+        minusButton.isEnabled = true
+        plusButton.isEnabled = true
+        changeSignButton.isEnabled = true
         display(currentNumber)
     }
     fun ResetLevel(view: View)
@@ -66,7 +58,7 @@ class LevelsActivity : AppCompatActivity() {
         currentNumber -= minusNumber
         display(currentNumber)
     }
-    fun Multply(view: View)
+    fun Multiply(view: View)
     {
         moves--
         currentNumber *= multplyNumber
@@ -91,29 +83,32 @@ class LevelsActivity : AppCompatActivity() {
     }
     private fun display(number: Int) {
         moves = max(moves.toInt(), 0)
-        val currentNumberTextView = findViewById<View>(R.id.Number_text_view) as TextView
-        currentNumberTextView.text = "" + number
-        val currentMoves = findViewById<View>(R.id.LeftMoves_text_view) as TextView
-        currentMoves.text = "Left Moves : " + moves
+        numberTextView.text = "Current : " + number
+        leftMovesTextView.text = "Left Moves : " + moves
         if (moves < 5)
         {
-            currentMoves.text = currentMoves.text.toString() + " !"
-            currentMoves.setTextColor(Color.parseColor("#fd7e14"))
+            leftMovesTextView.text = leftMovesTextView.text.toString() + " !"
+            leftMovesTextView.setTextColor(Color.parseColor("#fd7e14"))
+            numberTextView.setTextColor(Color.parseColor("#fd7e14"))
         }
         if (moves < 3)
         {
-            currentMoves.text = currentMoves.text.toString() + "!"
-            currentMoves.setTextColor(Color.parseColor("#dc3545"))
+            leftMovesTextView.text = leftMovesTextView.text.toString() + "!"
+            leftMovesTextView.setTextColor(Color.parseColor("#dc3545"))
+            numberTextView.setTextColor(Color.parseColor("#dc3545"))
         }
         if (moves > 4)
-            currentMoves.setTextColor(Color.parseColor("#20c997"))
-        if (currentNumber == FinalNumber || moves == 0)
-            EndGame(moves);
+        {
+            leftMovesTextView.setTextColor(Color.parseColor("#20c997"))
+            numberTextView.setTextColor(Color.parseColor("#20c997"))
+        }
+        if (currentNumber == finalNumber || moves == 0)
+            EndGame(moves)
     }
     private fun EndGame(Number: Int)
     {
         val builder = AlertDialog.Builder(this@LevelsActivity)
-        if (currentNumber == FinalNumber)
+        if (currentNumber == finalNumber)
         {
             builder.setMessage("Congratulations!! Won in " + ( 7 - moves) + " moves!!")
             builder.setNegativeButton("Try Again"){dialog, which ->
@@ -121,16 +116,11 @@ class LevelsActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Try Again",Toast.LENGTH_LONG).show()
             }
             builder.setNeutralButton("OK"){_,_ ->
-                val divBtn = findViewById<View>(R.id.Divide_button_view) as Button
-                val mulBtn = findViewById<View>(R.id.Multply_button_view) as Button
-                val minusBtn = findViewById<View>(R.id.Minus_button_view) as Button
-                val plusBtn = findViewById<View>(R.id.Plus_button_view) as Button
-                val signBtn = findViewById<View>(R.id.changeSign_button_view) as Button
-                divBtn.isEnabled = false
-                mulBtn.isEnabled = false
-                minusBtn.isEnabled = false
-                plusBtn.isEnabled = false
-                signBtn.isEnabled = false
+                divideButton.isEnabled = false
+                multiplyButton.isEnabled = false
+                minusButton.isEnabled = false
+                plusButton.isEnabled = false
+                changeSignButton.isEnabled = false
             }
             builder.setPositiveButton("Next Level"){dialog, which ->
                 Toast.makeText(applicationContext, "El mfrod f hna next level", Toast.LENGTH_LONG).show()
@@ -146,16 +136,11 @@ class LevelsActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Try Again",Toast.LENGTH_SHORT).show()
             }
             builder.setNeutralButton("OK"){_,_ ->
-                val divBtn = findViewById<View>(R.id.Divide_button_view) as Button
-                val mulBtn = findViewById<View>(R.id.Multply_button_view) as Button
-                val minusBtn = findViewById<View>(R.id.Minus_button_view) as Button
-                val plusBtn = findViewById<View>(R.id.Plus_button_view) as Button
-                val signBtn = findViewById<View>(R.id.changeSign_button_view) as Button
-                divBtn.isEnabled = false
-                mulBtn.isEnabled = false
-                minusBtn.isEnabled = false
-                plusBtn.isEnabled = false
-                signBtn.isEnabled = false
+                divideButton.isEnabled = false
+                multiplyButton.isEnabled = false
+                minusButton.isEnabled = false
+                plusButton.isEnabled = false
+                changeSignButton.isEnabled = false
             }
             val dialog: AlertDialog = builder.create()
             dialog.show()

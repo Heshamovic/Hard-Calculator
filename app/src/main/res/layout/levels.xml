@@ -14,7 +14,7 @@
         android:paddingLeft="35dp">
 
         <TextView
-            android:id="@+id/Time_text_view"
+            android:id="@+id/timeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time"
@@ -24,19 +24,19 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginRight="40dp"
             android:layout_marginLeft="45dp"
-            >
+            android:layout_marginRight="40dp"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="LEVEL"
                 android:textColor="#000"
-                android:textSize="24dp"
-                />
+                android:textSize="24dp" />
+
             <TextView
-                android:id="@+id/LevelNumber_text_view"
+                android:id="@+id/levelNumberTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="25dp"
@@ -46,55 +46,86 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/Reset_button_view"
+            android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reset"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:background="#dc3545"
             android:layout_marginTop="5dp"
-            android:textColor="#ffffff"
+            android:background="#dc3545"
             android:drawableLeft="@android:drawable/stat_notify_sync_noanim"
             android:onClick="ResetLevel"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:text="Reset"
+            android:textColor="#ffffff"
             android:textSize="17dp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/Number_text_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="0"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/numberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:textColor="#000"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/targetNumberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textColor="#dc3545"
+            android:textSize="24dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/leftMovesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textColor="#000"
+        android:textColor="#20c997"
         android:textSize="24dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp">
+
         <Button
-            android:layout_alignParentLeft="true"
-            android:id="@+id/Multply_button_view"
+            android:id="@+id/multiplyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="50dp"
-            android:onClick="Multply"
-            android:text="X 5"
             android:background="#343a40"
+            android:onClick="Multiply"
+            android:text="X 5"
             android:textColor="#cacaca"
             android:textSize="24sp" />
+
         <Button
-            android:layout_alignParentRight="true"
-            android:id="@+id/Divide_button_view"
+            android:id="@+id/divideButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
+            android:background="#343a40"
             android:onClick="Divide"
             android:text="/ 5"
-            android:background="#343a40"
             android:textColor="#cacaca"
             android:textSize="24sp" />
     </RelativeLayout>
@@ -102,16 +133,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp">
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="25dp">
+
         <Button
-            android:layout_centerInParent="true"
-            android:id="@+id/changeSign_button_view"
+            android:id="@+id/changeSignButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#343a40"
             android:onClick="ChangeSign"
             android:text="-/+"
-            android:background="#343a40"
             android:textColor="#cacaca"
             android:textSize="24sp" />
     </RelativeLayout>
@@ -119,38 +151,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
-            android:layout_alignParentLeft="true"
-            android:id="@+id/Minus_button_view"
+            android:id="@+id/minusButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="50dp"
+            android:background="#343a40"
             android:onClick="Minus"
             android:text="- 5"
-            android:background="#343a40"
             android:textColor="#cacaca"
-            android:textSize="24sp"
-            />
+            android:textSize="24sp" />
+
         <Button
-            android:layout_alignParentRight="true"
-            android:id="@+id/Plus_button_view"
+            android:id="@+id/plusButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
+            android:background="#343a40"
             android:onClick="Plus"
             android:text="+ 5"
-            android:background="#343a40"
             android:textColor="#cacaca"
             android:textSize="24sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/LeftMoves_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Left Moves : 7"
-        android:textAlignment="center"
-        android:textColor="#20c997"
-        android:textSize="24dp" />
 </LinearLayout>
