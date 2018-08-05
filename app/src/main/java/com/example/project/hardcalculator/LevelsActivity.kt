@@ -37,29 +37,29 @@ class LevelsActivity : AppCompatActivity() {
             multplyNumber = (Math.random() * 101).toLong()
             divideNumber = (Math.random() * 101).toLong()
             ch = false
-            if (getLevels(0, initNumber))
+            if (getLevels(0, initNumber, true))
                 allLevel.add(level(initNumber, finalNumber, plusNumber, minusNumber, multplyNumber, divideNumber))
         }
         lvlListIndex = 0
         setNumbers()
         display()
     }
-    fun getLevels(j:Long, value:Long):Boolean
+    fun getLevels(j:Long, value:Long, neg:Boolean):Boolean
     {
         if(value == finalNumber)
             ch = true
         if(j > 6 || ch || value >= 100000 || value <= -100000)
             return ch
+        if (!ch && neg)
+            getLevels(j + 1, value * -1, false)
         if (!ch)
-            getLevels(j + 1, value * -1)
+            getLevels(j + 1, value + plusNumber, true)
         if (!ch)
-            getLevels(j + 1, value + plusNumber)
+            getLevels(j + 1, value - minusNumber, true)
         if (!ch)
-            getLevels(j + 1, value - minusNumber)
-        if (!ch)
-            getLevels(j + 1, value * multplyNumber)
+            getLevels(j + 1, value * multplyNumber, true)
         if (!ch && value % divideNumber == 0.toLong())
-            getLevels(j + 1, value / divideNumber)
+            getLevels(j + 1, value / divideNumber, true)
         return ch
     }
     fun Reset ()
@@ -171,7 +171,7 @@ class LevelsActivity : AppCompatActivity() {
                 lvlListIndex %= allLevel.size
                 setNumbers()
                 display()
-                Toast.makeText(applicationContext, "Level" + (lvlListIndex + 1).toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Level " + (lvlListIndex + 1).toString(), Toast.LENGTH_LONG).show()
             }
             val dialog: AlertDialog = builder.create()
             dialog.show()
