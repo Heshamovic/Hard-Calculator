@@ -1,6 +1,7 @@
 package com.example.project.hardcalculator
 
 import android.app.AlertDialog
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,10 @@ import android.widget.Toast
 import android.graphics.Color
 import kotlinx.android.synthetic.main.levels.*
 import kotlin.math.max
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+
+
 
 class LevelsActivity : AppCompatActivity() {
 
@@ -22,10 +27,13 @@ class LevelsActivity : AppCompatActivity() {
     var currentNumber:Long = initNumber
     var moves:Long = 7
     var finalNumber:Long = 10
+    val levelNumber = "levelNumber"
+    var prefs: SharedPreferences? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
-        while (allLevel.size < 50 && lvlListIndex < 5000)
+        prefs = this.getSharedPreferences("HardCalculatorPref", 0)
+        while (allLevel.size < 50 && lvlListIndex < 100)
         {
             lvlListIndex++
             initNumber = (Math.random() * 101).toLong()
@@ -40,10 +48,11 @@ class LevelsActivity : AppCompatActivity() {
             if (getLevels(0, initNumber, true))
                 allLevel.add(level(initNumber, finalNumber, plusNumber, minusNumber, multplyNumber, divideNumber))
         }
-        lvlListIndex = 0
+        lvlListIndex = prefs!!.getInt(levelNumber, 0)
         setNumbers()
         display()
     }
+
     fun getLevels(j:Long, value:Long, neg:Boolean):Boolean
     {
         if(value == finalNumber)
@@ -77,7 +86,7 @@ class LevelsActivity : AppCompatActivity() {
     {
         if (currentNumber + plusNumber >= 100000)
         {
-            Toast.makeText(applicationContext,"The number will be too large", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"The number will be too large", Toast.LENGTH_SHORT).show()
             return
         }
         moves--
@@ -88,7 +97,7 @@ class LevelsActivity : AppCompatActivity() {
     {
         if (currentNumber - minusNumber <= -100000)
         {
-            Toast.makeText(applicationContext,"The number will be too small", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"The number will be too small", Toast.LENGTH_SHORT).show()
             return
         }
         moves--
@@ -99,12 +108,12 @@ class LevelsActivity : AppCompatActivity() {
     {
         if (currentNumber * multplyNumber >= 100000)
         {
-            Toast.makeText(applicationContext,"The number will be too large", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"The number will be too large", Toast.LENGTH_SHORT).show()
             return
         }
         if (currentNumber * multplyNumber <= -100000)
         {
-            Toast.makeText(applicationContext,"The number will be too small", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"The number will be too small", Toast.LENGTH_SHORT).show()
             return
         }
         moves--
@@ -115,7 +124,7 @@ class LevelsActivity : AppCompatActivity() {
     {
         if (currentNumber % divideNumber != 0.toLong())
         {
-            Toast.makeText(applicationContext,currentNumber.toString() + " is not divisible by " + divideNumber.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,currentNumber.toString() + " is not divisible by " + divideNumber.toString(), Toast.LENGTH_SHORT).show()
             return
         }
         moves--
@@ -161,17 +170,17 @@ class LevelsActivity : AppCompatActivity() {
             builder.setMessage("Congratulations!! Won in " + ( 7 - moves) + " moves!!")
             builder.setNegativeButton("Try Again"){dialog, which ->
                 Reset()
-                Toast.makeText(applicationContext,"Try Again",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Try Again",Toast.LENGTH_SHORT).show()
             }
             builder.setNeutralButton("OK"){_,_ ->
 
             }
             builder.setPositiveButton("Next Level"){dialog, which ->
-                lvlListIndex++
+                setCurrentLevel(++lvlListIndex)
                 lvlListIndex %= allLevel.size
                 setNumbers()
                 display()
-                Toast.makeText(applicationContext, "Level " + (lvlListIndex + 1).toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Level " + (lvlListIndex + 1).toString(), Toast.LENGTH_SHORT).show()
             }
             val dialog: AlertDialog = builder.create()
             dialog.show()
@@ -224,5 +233,10 @@ class LevelsActivity : AppCompatActivity() {
         divideButton.text = "/ " + divideNumber
         levelNumberTextView.text = (lvlListIndex + 1).toString()
         targetNumberTextView.text = "Target : " + finalNumber
+    }
+    private fun setCurrentLevel(level: Int) {
+        val editor = prefs!!.edit()
+        editor.putInt(levelNumber, level)
+        editor.apply()
     }
 }
