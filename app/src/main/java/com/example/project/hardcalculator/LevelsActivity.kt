@@ -53,6 +53,8 @@ class LevelsActivity : AppCompatActivity() {
                             x += (c - '0')
                         }
                     }
+                    a[i++] = x
+                    x = 0
                     allLevel.add(level(a[0].toLong(), a[1].toLong(), a[2].toLong(), a[3].toLong(), a[4].toLong(), a[5].toLong()))
                     data = reader.readLine().toString()
                 }
