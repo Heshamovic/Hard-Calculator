@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
@@ -11,21 +12,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        android:paddingLeft="35dp">
+        android:gravity="center">
 
-        <TextView
-            android:id="@+id/timeTextView"
+        <Chronometer
+            android:id="@+id/timerClock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time"
             android:textColor="#000"
-            android:textSize="24dp" />
+            android:textSize="16dp" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -39,7 +40,6 @@
                 android:id="@+id/levelNumberTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="25dp"
                 android:textColor="#000"
                 android:textSize="24dp" />
         </LinearLayout>
@@ -64,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:layout_marginTop="16dp">
 
         <TextView
@@ -102,6 +103,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginTop="25dp">
 
         <Button
@@ -132,6 +134,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp">
 
@@ -139,7 +142,6 @@
             android:id="@+id/changeSignButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:background="#343a40"
             android:onClick="ChangeSign"
             android:text="-/+"
@@ -149,6 +151,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content">
 
         <Button
@@ -175,5 +178,29 @@
             android:textColor="#cacaca"
             android:textSize="24sp" />
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+        <NumberPicker
+            android:id="@+id/customLevelTextView"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/levelGoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:background="#343a40"
+            android:onClick="goLevel"
+            android:text="Go TO LEVEL"
+            android:textColor="#cacaca"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

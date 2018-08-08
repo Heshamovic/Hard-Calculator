@@ -9,10 +9,12 @@ import android.graphics.Color
 import kotlinx.android.synthetic.main.levels.*
 import kotlin.math.max
 import android.content.SharedPreferences
+import android.os.SystemClock
 import java.io.*
 
 class LevelsActivity : AppCompatActivity() {
 
+    var lvl = 0
     var lvlListIndex:Int = 0
     val allLevel: MutableList<level> = mutableListOf()
     var plusNumber:Long = 1
@@ -28,6 +30,7 @@ class LevelsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
+        customLevelTextView.minValue = 1
         var data = ""
         var ise = this.getResources().openRawResource(R.raw.levels)
         var reader = BufferedReader(InputStreamReader(ise))
@@ -62,15 +65,25 @@ class LevelsActivity : AppCompatActivity() {
             catch(e: Exception) {  }
         }
         prefs = this.getSharedPreferences("HardCalculatorPref", 0)
-        lvlListIndex = prefs!!.getInt(levelNumber, 0)
+        lvl = prefs!!.getInt(levelNumber, 0)
+        lvlListIndex = lvl
         setNumbers()
+        customLevelTextView.maxValue = lvlListIndex + 1
         display()
     }
     fun Reset ()
     {
+        timerClock.base = SystemClock.elapsedRealtime()
+        timerClock.start()
         currentNumber = initNumber
         moves = 7
         enableButtons()
+        display()
+    }
+    fun goLevel(view: View)
+    {
+        lvlListIndex = customLevelTextView.value - 1
+        setNumbers()
         display()
     }
     fun ResetLevel(view: View)
@@ -160,9 +173,11 @@ class LevelsActivity : AppCompatActivity() {
     {
         disableButtons()
         val builder = AlertDialog.Builder(this@LevelsActivity)
+        val elapsedMillis = SystemClock.elapsedRealtime() - timerClock.getBase()
+        timerClock.stop()
         if (currentNumber == finalNumber)
         {
-            builder.setMessage("Congratulations!! Won in " + ( 7 - moves) + " moves!!")
+            builder.setMessage("Congratulations!! Won in " + ( 7 - moves) + " moves and " + (elapsedMillis / 1000) + " seconds !!")
             builder.setNegativeButton("Try Again"){dialog, which ->
                 Reset()
                 Toast.makeText(applicationContext,"Try Again",Toast.LENGTH_SHORT).show()
@@ -170,8 +185,11 @@ class LevelsActivity : AppCompatActivity() {
             builder.setNeutralButton("OK"){_,_ ->
             }
             builder.setPositiveButton("Next Level"){dialog, which ->
+                timerClock.base = SystemClock.elapsedRealtime()
+                timerClock.start()
                 setCurrentLevel(++lvlListIndex)
                 lvlListIndex %= allLevel.size
+                customLevelTextView.maxValue = max(lvlListIndex + 1, customLevelTextView.maxValue)
                 setNumbers()
                 display()
                 Toast.makeText(applicationContext, "Level " + (lvlListIndex + 1).toString(), Toast.LENGTH_SHORT).show()
@@ -210,6 +228,8 @@ class LevelsActivity : AppCompatActivity() {
     }
     fun setNumbers()
     {
+        timerClock.base = SystemClock.elapsedRealtime()
+        timerClock.start()
         enableButtons()
         if (allLevel.isEmpty())
         {
@@ -242,6 +262,8 @@ class LevelsActivity : AppCompatActivity() {
         targetNumberTextView.text = "Target : " + finalNumber
     }
     private fun setCurrentLevel(level: Int) {
+        if (lvl > level)
+            return
         val editor = prefs!!.edit()
         editor.putInt(levelNumber, level)
         editor.apply()
