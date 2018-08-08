@@ -30,7 +30,6 @@ class LevelsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
-        customLevelTextView.minValue = 1
         var data = ""
         var ise = this.getResources().openRawResource(R.raw.levels)
         var reader = BufferedReader(InputStreamReader(ise))
@@ -68,6 +67,7 @@ class LevelsActivity : AppCompatActivity() {
         lvl = prefs!!.getInt(levelNumber, 0)
         lvlListIndex = lvl
         setNumbers()
+        customLevelTextView.minValue = 1
         customLevelTextView.maxValue = lvlListIndex + 1
         display()
     }
@@ -173,8 +173,8 @@ class LevelsActivity : AppCompatActivity() {
     {
         disableButtons()
         val builder = AlertDialog.Builder(this@LevelsActivity)
-        val elapsedMillis = SystemClock.elapsedRealtime() - timerClock.getBase()
         timerClock.stop()
+        val elapsedMillis = SystemClock.elapsedRealtime() - timerClock.getBase()
         if (currentNumber == finalNumber)
         {
             builder.setMessage("Congratulations!! Won in " + ( 7 - moves) + " moves and " + (elapsedMillis / 1000) + " seconds !!")
