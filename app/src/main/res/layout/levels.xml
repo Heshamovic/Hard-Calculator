@@ -1,206 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:layout_height="wrap_content">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Chronometer
-            android:id="@+id/timerClock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="16dp" />
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="LEVEL"
-                android:textColor="#000"
-                android:textSize="24dp" />
-
-            <TextView
-                android:id="@+id/levelNumberTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textColor="#000"
-                android:textSize="24dp" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/resetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="#dc3545"
-            android:drawableLeft="@android:drawable/stat_notify_sync_noanim"
-            android:onClick="ResetLevel"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:text="Reset"
-            android:textColor="#ffffff"
-            android:textSize="17dp" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_alignParentLeft="true"
-            android:id="@+id/numberTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:textAlignment="center"
-            android:paddingTop="10dp"
-            android:textColor="#000"
-            android:textSize="24dp" />
-
-        <TextView
-            android:layout_alignParentRight="true"
-            android:id="@+id/targetNumberTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:paddingTop="10dp"
-            android:textAlignment="center"
-            android:textColor="#dc3545"
-            android:textSize="24dp" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/leftMovesTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textAlignment="center"
-        android:textColor="#20c997"
-        android:textSize="24dp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="25dp">
-
-        <Button
-            android:id="@+id/multiplyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50dp"
-            android:background="#343a40"
-            android:onClick="Multiply"
-            android:text="X 5"
-            android:textColor="#cacaca"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/divideButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:background="#343a40"
-            android:onClick="Divide"
-            android:text="/ 5"
-            android:textColor="#cacaca"
-            android:textSize="24sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="25dp"
-        android:layout_marginTop="25dp">
-
-        <Button
-            android:id="@+id/changeSignButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#343a40"
-            android:onClick="ChangeSign"
-            android:text="-/+"
-            android:textColor="#cacaca"
-            android:textSize="24sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/minusButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50dp"
-            android:background="#343a40"
-            android:onClick="Minus"
-            android:text="- 5"
-            android:textColor="#cacaca"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/plusButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:background="#343a40"
-            android:onClick="Plus"
-            android:text="+ 5"
-            android:textColor="#cacaca"
-            android:textSize="24sp" />
-    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center">
-        <NumberPicker
-            android:id="@+id/customLevelTextView"
-            android:layout_marginRight="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/levelGoButton"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:background="#343a40"
-            android:onClick="goLevel"
-            android:text="Go TO LEVEL"
-            android:textColor="#cacaca"
-            android:textSize="24sp" />
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center">
 
+            <Chronometer
+                android:id="@+id/timerClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="LEVEL"
+                    android:textColor="#000"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/levelNumberTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="#000"
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="#dc3545"
+                android:drawableLeft="@android:drawable/stat_notify_sync_noanim"
+                android:onClick="ResetLevel"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Reset"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:id="@+id/numberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:textAlignment="center"
+                android:paddingTop="10dp"
+                android:textColor="#000"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/targetNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:paddingTop="10dp"
+                android:textAlignment="center"
+                android:textColor="#dc3545"
+                android:textSize="24dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/leftMovesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textAlignment="center"
+            android:textColor="#20c997"
+            android:textSize="24dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="25dp">
+
+            <Button
+                android:id="@+id/multiplyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:background="#343a40"
+                android:onClick="Multiply"
+                android:text="X 5"
+                android:textColor="#cacaca"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/divideButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:background="#343a40"
+                android:onClick="Divide"
+                android:text="/ 5"
+                android:textColor="#cacaca"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp">
+
+            <Button
+                android:id="@+id/changeSignButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#343a40"
+                android:onClick="ChangeSign"
+                android:text="-/+"
+                android:textColor="#cacaca"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/minusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:background="#343a40"
+                android:onClick="Minus"
+                android:text="- 5"
+                android:textColor="#cacaca"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/plusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:background="#343a40"
+                android:onClick="Plus"
+                android:text="+ 5"
+                android:textColor="#cacaca"
+                android:textSize="24sp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+            <NumberPicker
+                android:id="@+id/customLevelTextView"
+                android:layout_marginRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/levelGoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:background="#343a40"
+                android:onClick="goLevel"
+                android:text="Go TO LEVEL"
+                android:textColor="#cacaca"
+                android:textSize="24sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
