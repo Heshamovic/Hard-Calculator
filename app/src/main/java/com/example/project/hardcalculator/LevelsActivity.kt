@@ -1,7 +1,6 @@
 package com.example.project.hardcalculator
 
 import android.app.AlertDialog
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,15 +8,12 @@ import android.widget.Toast
 import android.graphics.Color
 import kotlinx.android.synthetic.main.levels.*
 import kotlin.math.max
-import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-
-
+import java.io.*
 
 class LevelsActivity : AppCompatActivity() {
 
     var lvlListIndex:Int = 0
-    var ch:Boolean = false
     val allLevel: MutableList<level> = mutableListOf()
     var plusNumber:Long = 1
     var minusNumber:Long = 2
@@ -32,44 +28,41 @@ class LevelsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.levels)
-        prefs = this.getSharedPreferences("HardCalculatorPref", 0)
-        while (allLevel.size < 50 && lvlListIndex < 100)
+        var data = ""
+        var ise = this.getResources().openRawResource(R.raw.levels)
+        var reader = BufferedReader(InputStreamReader(ise))
+        if (ise != null)
         {
-            lvlListIndex++
-            initNumber = (Math.random() * 101).toLong()
-            finalNumber = (Math.random() * 101).toLong()
-            if (finalNumber == initNumber)
-                continue
-            plusNumber = (Math.random() * 101).toLong()
-            minusNumber = (Math.random() * 101).toLong()
-            multplyNumber = (Math.random() * 101).toLong()
-            divideNumber = (Math.random() * 101).toLong()
-            ch = false
-            if (getLevels(0, initNumber, true))
-                allLevel.add(level(initNumber, finalNumber, plusNumber, minusNumber, multplyNumber, divideNumber))
+            try {
+                data = reader.readLine().toString()
+                while(data != null)
+                {
+                    var x = 0
+                    var i = 0
+                    var a = IntArray(10)
+                    for (c in data)
+                    {
+                        if (c == ' ')
+                        {
+                            a[i++] = x
+                            x = 0
+                        }
+                        else
+                        {
+                            x *= 10
+                            x += (c - '0')
+                        }
+                    }
+                    allLevel.add(level(a[0].toLong(), a[1].toLong(), a[2].toLong(), a[3].toLong(), a[4].toLong(), a[5].toLong()))
+                    data = reader.readLine().toString()
+                }
+            }
+            catch(e: Exception) {  }
         }
+        prefs = this.getSharedPreferences("HardCalculatorPref", 0)
         lvlListIndex = prefs!!.getInt(levelNumber, 0)
         setNumbers()
         display()
-    }
-
-    fun getLevels(j:Long, value:Long, neg:Boolean):Boolean
-    {
-        if(value == finalNumber)
-            ch = true
-        if(j > 6 || ch || value >= 100000 || value <= -100000)
-            return ch
-        if (!ch && neg)
-            getLevels(j + 1, value * -1, false)
-        if (!ch)
-            getLevels(j + 1, value + plusNumber, true)
-        if (!ch)
-            getLevels(j + 1, value - minusNumber, true)
-        if (!ch)
-            getLevels(j + 1, value * multplyNumber, true)
-        if (!ch && value % divideNumber == 0.toLong())
-            getLevels(j + 1, value / divideNumber, true)
-        return ch
     }
     fun Reset ()
     {
@@ -173,7 +166,6 @@ class LevelsActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Try Again",Toast.LENGTH_SHORT).show()
             }
             builder.setNeutralButton("OK"){_,_ ->
-
             }
             builder.setPositiveButton("Next Level"){dialog, which ->
                 setCurrentLevel(++lvlListIndex)
@@ -217,13 +209,26 @@ class LevelsActivity : AppCompatActivity() {
     fun setNumbers()
     {
         enableButtons()
-        initNumber = allLevel[lvlListIndex].intiallNumber
-        currentNumber = initNumber
-        finalNumber = allLevel[lvlListIndex].finalNumber
-        plusNumber = allLevel[lvlListIndex].pluslNumber
-        multplyNumber = allLevel[lvlListIndex].multiplyNumber
-        divideNumber = allLevel[lvlListIndex].divideNumber
-        minusNumber = allLevel[lvlListIndex].minuslNumber
+        if (allLevel.isEmpty())
+        {
+            initNumber = 1
+            currentNumber = initNumber
+            finalNumber = 2
+            plusNumber = 1
+            multplyNumber = 1
+            divideNumber = 1
+            minusNumber = 1
+        }
+        else
+        {
+            initNumber = allLevel[lvlListIndex].intiallNumber
+            currentNumber = initNumber
+            finalNumber = allLevel[lvlListIndex].finalNumber
+            plusNumber = allLevel[lvlListIndex].pluslNumber
+            multplyNumber = allLevel[lvlListIndex].multiplyNumber
+            divideNumber = allLevel[lvlListIndex].divideNumber
+            minusNumber = allLevel[lvlListIndex].minuslNumber
+        }
         moves = 7
         leftMovesTextView.text = "7"
         numberTextView.text = currentNumber.toString()
