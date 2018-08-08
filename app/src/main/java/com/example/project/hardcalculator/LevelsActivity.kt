@@ -145,8 +145,9 @@ class LevelsActivity : AppCompatActivity() {
         currentNumber *= -1
         display()
     }
-    private fun display() {
-        moves = max(moves.toLong(), 0)
+    private fun display()
+    {
+        moves = max(moves, 0)
         numberTextView.text = "Current : " + currentNumber
         leftMovesTextView.text = "Left Moves : " + moves
         if (moves < 5)
